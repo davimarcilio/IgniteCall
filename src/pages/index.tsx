@@ -1,7 +1,5 @@
-import { Inter } from "@next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Heading } from "@ignite-ui/react";
 
 export default function Home() {
-  return <h1>Hello</h1>;
+  return <Heading as={"h1"}>Hello</Heading>;
 }
