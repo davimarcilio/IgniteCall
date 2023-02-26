@@ -48,7 +48,7 @@ export default function Register() {
               variant={'secondary'}
               size="sm"
             >
-              Conectado
+              Conectar
               <ArrowRight />
             </Button>
           )}
