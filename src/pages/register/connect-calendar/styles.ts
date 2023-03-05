@@ -1,4 +1,4 @@
-import { Box, styled, Text } from '@ignite-ui/react'
+import { Box, styled, Text } from '@alphacall-ui/react'
 
 export const ConnectBox = styled(Box, {
   marginTop: '$6',

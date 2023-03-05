@@ -1,4 +1,4 @@
-import { styled, Heading, Text } from '@ignite-ui/react'
+import { styled, Heading, Text } from '@alphacall-ui/react'
 
 export const Container = styled('div', {
   display: 'flex',

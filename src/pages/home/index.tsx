@@ -1,4 +1,4 @@
-import { Heading, Text } from '@ignite-ui/react'
+import { Heading, Text } from '@alphacall-ui/react'
 import { Container, Hero, Preview } from './styles'
 import previewImage from '../../assets/previewImg.png'
 import Image from 'next/image'

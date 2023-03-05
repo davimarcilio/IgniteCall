@@ -1,4 +1,4 @@
-import { Button, Heading, MultiStep, Text } from '@ignite-ui/react'
+import { Button, Heading, MultiStep, Text } from '@alphacall-ui/react'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { ArrowRight, Check } from 'phosphor-react'
