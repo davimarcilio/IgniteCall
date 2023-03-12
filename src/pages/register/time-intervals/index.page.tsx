@@ -35,8 +35,8 @@ export default function ConnectCallendar() {
               <Text>Segunda-feira</Text>
             </IntervalDay>
             <IntervalInputs>
-              <TextInput size={'sm'} type="time" step={60} />
-              <TextInput size={'sm'} type="time" step={60} />
+              <TextInput type="time" step={60} />
+              <TextInput type="time" step={60} />
             </IntervalInputs>
           </IntervalItem>
         </IntervalsContainer>
