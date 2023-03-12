@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@alphacall-ui/react": "^5.0.0",
+    "@alphacall-ui/react": "^5.0.1",
     "@hookform/resolvers": "^2.9.11",
     "@next/font": "13.1.6",
     "@prisma/client": "^4.10.1",
