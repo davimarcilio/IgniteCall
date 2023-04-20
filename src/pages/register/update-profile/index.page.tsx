@@ -1,5 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Heading, MultiStep, Text, TextArea } from '@alphacall-ui/react'
+import {
+  Avatar,
+  Button,
+  Heading,
+  MultiStep,
+  Text,
+  TextArea,
+} from '@alphacall-ui/react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Container, Header } from '../styles'
@@ -8,6 +15,7 @@ import { useSession } from 'next-auth/react'
 import { GetServerSideProps } from 'next'
 import { getServerSession } from 'next-auth'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
+import { api } from '@/lib/axios'
 
 const updateFormSchema = z.object({
   username: z
@@ -37,7 +45,9 @@ export default function UpdateProfile() {
   const session = useSession()
   console.log(session)
 
-  async function handleUpdateProfile(data: UpdateProfileData) {}
+  async function handleUpdateProfile(data: UpdateProfileData) {
+    api.put('users/update-profile', data)
+  }
 
   return (
     <Container>
@@ -47,11 +57,15 @@ export default function UpdateProfile() {
           Precisamos de algumas informações para criar seu perfil! Ah, você pode
           editar essas informações depois.
         </Text>
-        <MultiStep size={4} currentStep={1} />
+        <MultiStep size={4} currentStep={4} />
       </Header>
       <ProfileBox onSubmit={handleSubmit(handleUpdateProfile)} as={'form'}>
         <label>
           <Text>Foto de perfil</Text>
+          <Avatar
+            src={session.data?.user.avatar_url}
+            alt={session.data?.user.name}
+          />
         </label>
         <label>
           <Text size={'sm'}>Sobre você</Text>
