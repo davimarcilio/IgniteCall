@@ -16,18 +16,9 @@ import { GetServerSideProps } from 'next'
 import { getServerSession } from 'next-auth'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 import { api } from '@/lib/axios'
+import { useRouter } from 'next/router'
 
 const updateFormSchema = z.object({
-  username: z
-    .string()
-    .min(3, { message: 'O usuário precisa conter pelo menos 3 letras.' })
-    .regex(/^([a-z\\-]+)$/i, {
-      message: 'O usuário pode conter apenas letras e hifens. ',
-    })
-    .transform((username) => username.toLowerCase()),
-  name: z
-    .string()
-    .min(3, { message: 'O nome precisa conter pelo menos 3 letras.' }),
   bio: z.string(),
 })
 
@@ -43,10 +34,12 @@ export default function UpdateProfile() {
   })
 
   const session = useSession()
-  console.log(session)
-
+  const router = useRouter()
   async function handleUpdateProfile(data: UpdateProfileData) {
-    api.put('users/update-profile', data)
+    await api.put('users/profile', {
+      bio: data.bio,
+    })
+    await router.push(`/schedule/${session.data?.user.username}`)
   }
 
   return (

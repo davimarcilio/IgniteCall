@@ -22,6 +22,7 @@ import {
   IntervalsContainer,
 } from './styles'
 import { api } from '@/lib/axios'
+import { useRouter } from 'next/router'
 
 const timeIntervalsFormSchema = z.object({
   intervals: z
@@ -85,6 +86,8 @@ export default function TimeIntervals() {
     },
   })
 
+  const router = useRouter()
+
   const weekDays = getWeekDays()
 
   const { fields } = useFieldArray({
@@ -97,6 +100,7 @@ export default function TimeIntervals() {
   async function handleSetTimeIntervals(values: unknown) {
     const data = values as TimeIntervalsFormOutput
     await api.post('/users/time-intervals', data)
+    await router.push('/register/update-profile')
   }
 
   return (

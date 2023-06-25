@@ -5,13 +5,7 @@ import { z } from 'zod'
 import { prisma } from '@/lib/prisma'
 
 const updateProfileBodySchema = z.object({
-  intervals: z.array(
-    z.object({
-      weekDay: z.number(),
-      startTimeInMinutes: z.number(),
-      endTimeInMinutes: z.number(),
-    }),
-  ),
+  bio: z.string(),
 })
 
 export default async function handler(
@@ -42,5 +36,5 @@ export default async function handler(
     },
   })
 
-  return res.status(201).end()
+  return res.status(204).end()
 }
