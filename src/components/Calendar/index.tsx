@@ -73,6 +73,10 @@ export function Calendar({ onDateSelected, selectedDate }: CalendarProps) {
     },
   )
   const calendarWeeks = useMemo(() => {
+    if (!blockedDates) {
+      return []
+    }
+
     const daysInMonthArray = Array.from({
       length: currentDate.daysInMonth(),
     }).map((_, i) => {
@@ -110,7 +114,7 @@ export function Calendar({ onDateSelected, selectedDate }: CalendarProps) {
         }
       }),
       ...daysInMonthArray.map((date) => {
-        const dayHasBlocked = !!blockedDates?.blockedWeekDays.includes(
+        const dayHasBlocked = blockedDates.blockedWeekDays.includes(
           date.get('day'),
         )
 

@@ -49,7 +49,6 @@ export default function Register() {
   }, [router.query?.username, setValue])
 
   async function handleRegister(data: RegisterFormData) {
-    console.log(data)
     try {
       await api.post('/users', {
         name: data.name,
