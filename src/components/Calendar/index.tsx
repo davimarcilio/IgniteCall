@@ -73,6 +73,7 @@ export function Calendar({ onDateSelected, selectedDate }: CalendarProps) {
       return data
     },
   )
+
   const calendarWeeks = useMemo(() => {
     if (!blockedDates) {
       return []
@@ -118,13 +119,15 @@ export function Calendar({ onDateSelected, selectedDate }: CalendarProps) {
         const dayHasBlocked = blockedDates.blockedWeekDays.includes(
           date.get('day'),
         )
+        const dateHasBlocked = blockedDates.blockedDates.includes(
+          date.get('date'),
+        )
+
+        const dateInPast = date.endOf('day').isBefore(new Date())
 
         return {
           date,
-          disabled:
-            date.endOf('day').isBefore(new Date()) ||
-            dayHasBlocked ||
-            blockedDates.blockedDates.includes(date.get('date')),
+          disabled: dateInPast || dayHasBlocked || dateHasBlocked,
         }
       }),
       ...nextMonthFillArray.map((date) => {
