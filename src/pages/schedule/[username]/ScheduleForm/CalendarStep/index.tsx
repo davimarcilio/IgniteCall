@@ -13,7 +13,11 @@ import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
 import { Availability } from '@/models/interfaces/Availability'
 
-export function CalendarStep() {
+interface CalendarStepProps {
+  onSelectDateTime: (date: Date) => void
+}
+
+export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   // const [availability, setAvailability] = useState<Availability | null>(null)
 
@@ -50,6 +54,12 @@ export function CalendarStep() {
     },
   )
 
+  function handleSelectTime(hour: number) {
+    const dateWithTime = dayjs(selectedDate).set('hour', hour).startOf('hour')
+
+    onSelectDateTime(dateWithTime.toDate())
+  }
+
   return (
     <Container isTimePickerOpen={isDateSelected}>
       <Calendar onDateSelected={setSelectedDate} selectedDate={selectedDate} />
@@ -62,6 +72,7 @@ export function CalendarStep() {
             {availability?.possibleTimes.map((hour) => {
               return (
                 <TimePickerItem
+                  onClick={() => handleSelectTime(hour)}
                   key={hour}
                   disabled={!availability.availableTimes.includes(hour)}
                 >
